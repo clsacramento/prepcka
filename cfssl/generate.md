@@ -78,6 +78,6 @@ Use step 2 from kubernetes.io doc:
 ```
 mkdir cert
 cd cert
-cfssl print-defaults config > config.json
-cfssl print-defaults csr > csr.json
+cfssl print-defaults config > ca-config.json
+cfssl print-defaults csr > ca-csr.json
 ```
