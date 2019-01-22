@@ -73,7 +73,7 @@ $ cfssl print-defaults csr
 ```
 
 
-## Generating the CA
+## Generating the CA files
 Use step 2 from kubernetes.io doc:
 ```
 mkdir cert
@@ -81,3 +81,16 @@ cd cert
 cfssl print-defaults config > ca-config.json
 cfssl print-defaults csr > ca-csr.json
 ```
+Update files then run:
+```
+cfssl gencert -initca ca-csr.json | cfssljson -bare ca
+```
+
+Files created:
+```
+$ ls
+ca-config.json  ca.csr  ca-csr.json  ca-key.pem  ca.pem
+```
+
+## Generating API Server certificates
+TODO
