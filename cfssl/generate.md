@@ -123,7 +123,7 @@ Files generated:
 $ ls
 admin.csr  admin-csr.json  admin-key.pem  admin.pem  ca-config.json  ca.csr  ca-csr.json  ca-key.pem  ca.pem
 ```
-## Generate kubelets certs
+## Generate kubelets client certs
 ```
 for i in `seq 1 3` ; do
     bash vmcerts.sh worker $i
@@ -143,6 +143,27 @@ Use openssl to check if the final .pem for the workers are correct (specially th
 ```
 openssl x509 -in worker-1.pem -text
 ```
+
+## Controller Manager Client Certificate
+Run:
+```
+bash convertcsr.sh kube-controller-manager
+```
+TODO: lik convertcsr.sh
+
+Check with opessnl (optional):
+```
+openssl x509 -in kube-controller-manager.pem -text
+```
+Files:
+```
+$ ls
+admin.csr       ca-config.json  ca.pem                            kube-controller-manager-key.pem  worker-1-csr.json  worker-2-csr.json  worker-3-csr.json
+admin-csr.json  ca.csr          convertcsr.sh                     kube-controller-manager.pem      worker-1-key.pem   worker-2-key.pem   worker-3-key.pem
+admin-key.pem   ca-csr.json     kube-controller-manager.csr       vmcert.sh                        worker-1.pem       worker-2.pem       worker-3.pem
+admin.pem       ca-key.pem      kube-controller-manager-csr.json  worker-1.csr                     worker-2.csr       worker-3.csr
+```
+
 
 ## Generating API Server certificates
 TODO
