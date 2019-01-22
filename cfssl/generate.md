@@ -207,3 +207,41 @@ ca.csr            kube-controller-manager.pem       kubernetes.pem       service
 ca-csr.json       kube-proxy.csr                    kube-scheduler.csr   svcaccountgen.sh           worker-2-key.pem
 ```
 
+# Copy certs to VMs
+Run
+```
+bash copycerts.sh
+```
+Output:
+```
+$ bash copycerts.sh 
+Warning: Permanently added 'compute.2468593225064682962' (ECDSA) to the list of known hosts.
+ca.pem                                                                                                                           100% 1371     1.9MB/s   00:00    
+worker-1-key.pem                                                                                                                 100% 1679     2.6MB/s   00:00    
+worker-1.pem                                                                                                                     100% 1480     2.2MB/s   00:00    
+Warning: Permanently added 'compute.2031701244680770991' (ECDSA) to the list of known hosts.
+ca.pem                                                                                                                           100% 1371     1.9MB/s   00:00    
+worker-2-key.pem                                                                                                                 100% 1679     2.0MB/s   00:00    
+worker-2.pem                                                                                                                     100% 1480     2.1MB/s   00:00    
+Warning: Permanently added 'compute.1750408361698563500' (ECDSA) to the list of known hosts.
+ca.pem                                                                                                                           100% 1371     2.2MB/s   00:00    
+worker-3-key.pem                                                                                                                 100% 1679     2.6MB/s   00:00    
+worker-3.pem      
+ca.pem                                                                                                                           100% 1371     1.7MB/s   00:00    
+ca-key.pem                                                                                                                       100% 1679     2.3MB/s   00:00    
+kubernetes-key.pem                                                                                                               100% 1679     2.4MB/s   00:00    
+kubernetes.pem                                                                                                                   100% 1521     2.7MB/s   00:00    
+service-accounts.pem                                                                                                             100% 1444     2.3MB/s   00:00    
+Warning: Permanently added 'compute.1840337443504166360' (ECDSA) to the list of known hosts.
+ca.pem                                                                                                                           100% 1371     1.8MB/s   00:00    
+ca-key.pem                                                                                                                       100% 1679     2.8MB/s   00:00    
+kubernetes-key.pem                                                                                                               100% 1679     2.5MB/s   00:00    
+kubernetes.pem                                                                                                                   100% 1521     2.3MB/s   00:00    
+service-accounts.pem                                                                                                             100% 1444     2.1MB/s   00:00    
+Warning: Permanently added 'compute.8204676641925535188' (ECDSA) to the list of known hosts.
+ca.pem                                                                                                                           100% 1371     1.8MB/s   00:00    
+ca-key.pem                                                                                                                       100% 1679     2.4MB/s   00:00    
+kubernetes-key.pem                                                                                                               100% 1679     2.7MB/s   00:00    
+kubernetes.pem                                                                                                                   100% 1521     2.5MB/s   00:00    
+service-accounts.pem  
+```
