@@ -73,7 +73,7 @@ $ cfssl print-defaults csr
 ```
 
 
-## Generating the CA files
+## Generating the CA root cert
 Use step 2 from kubernetes.io doc:
 ```
 mkdir cert
@@ -92,5 +92,30 @@ $ ls
 ca-config.json  ca.csr  ca-csr.json  ca-key.pem  ca.pem
 ```
 
+## Generate admin certs
+Create admin-csr.json from ca-csr.json
+```
+$ cp ca-csr.json admin-csr.json
+$ diff ca-csr.json admin-csr.json 
+2c2
+<     "CN": "kubernetes",
+---
+>     "CN": "admin",
+12,13c12,13
+<           "O": "CA",
+<           "OU": "Kubernetes"
+---
+>           "O": "system:masters",
+>           "OU": "Kubernetes install"
+```
+Generate using the previously created ca:
+```
+cfssl gencert \
+  -ca=ca.pem \
+  -ca-key=ca-key.pem \
+  -config=ca-config.json \
+  -profile=kubernetes \
+  admin-csr.json | cfssljson -bare admin
+```
 ## Generating API Server certificates
 TODO
