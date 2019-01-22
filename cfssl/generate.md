@@ -163,7 +163,47 @@ admin-csr.json  ca.csr          convertcsr.sh                     kube-controlle
 admin-key.pem   ca-csr.json     kube-controller-manager.csr       vmcert.sh                        worker-1.pem       worker-2.pem       worker-3.pem
 admin.pem       ca-key.pem      kube-controller-manager-csr.json  worker-1.csr                     worker-2.csr       worker-3.csr
 ```
-
-
+### and others
+```
+bash convertcsr.sh kube-proxy
+bash convertcsr.sh kube-scheduler
+```
 ## Generating API Server certificates
-TODO
+Generate
+```
+bash apiservercert.sh 
+```
+Files
+```
+$ ls
+admin.csr         ca-csr.json                       kube-controller-manager.pem  kubernetes-key.pem       worker-1.csr       worker-2.pem
+admin-csr.json    ca-key.pem                        kube-proxy.csr               kubernetes.pem           worker-1-csr.json  worker-3.csr
+admin-key.pem     ca.pem                            kube-proxy-csr.json          kube-scheduler.csr       worker-1-key.pem   worker-3-csr.json
+admin.pem         convertcsr.sh                     kube-proxy-key.pem           kube-scheduler-csr.json  worker-1.pem       worker-3-key.pem
+apiservercert.sh  kube-controller-manager.csr       kube-proxy.pem               kube-scheduler-key.pem   worker-2.csr       worker-3.pem
+ca-config.json    kube-controller-manager-csr.json  kubernetes.csr               kube-scheduler.pem       worker-2-csr.json
+ca.csr            kube-controller-manager-key.pem   kubernetes-csr.json          vmcert.sh                worker-2-key.pem
+```
+Check with openssl
+```
+openssl x509 -in kubernetes.pem -text
+```
+
+## Service accounts certs
+Generate
+```
+bash svcaccountgen.sh 
+```
+Files
+```
+$ ls
+admin.csr         ca-key.pem                        kube-proxy-csr.json  kube-scheduler-csr.json    vmcert.sh          worker-2.pem
+admin-csr.json    ca.pem                            kube-proxy-key.pem   kube-scheduler-key.pem     worker-1.csr       worker-3.csr
+admin-key.pem     convertcsr.sh                     kube-proxy.pem       kube-scheduler.pem         worker-1-csr.json  worker-3-csr.json
+admin.pem         kube-controller-manager.csr       kubernetes.csr       service-accounts.csr       worker-1-key.pem   worker-3-key.pem
+apiservercert.sh  kube-controller-manager-csr.json  kubernetes-csr.json  service-accounts-csr.json  worker-1.pem       worker-3.pem
+ca-config.json    kube-controller-manager-key.pem   kubernetes-key.pem   service-accounts-key.pem   worker-2.csr
+ca.csr            kube-controller-manager.pem       kubernetes.pem       service-accounts.pem       worker-2-csr.json
+ca-csr.json       kube-proxy.csr                    kube-scheduler.csr   svcaccountgen.sh           worker-2-key.pem
+```
+
