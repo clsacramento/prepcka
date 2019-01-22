@@ -5,6 +5,7 @@
         },
         "profiles": {
             "kubernetes": {
+                "expiry": "8760h",
                 "usages": [
                     "signing",
                     "key encipherment",
