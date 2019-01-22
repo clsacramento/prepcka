@@ -117,5 +117,32 @@ cfssl gencert \
   -profile=kubernetes \
   admin-csr.json | cfssljson -bare admin
 ```
+
+Files generated:
+```
+$ ls
+admin.csr  admin-csr.json  admin-key.pem  admin.pem  ca-config.json  ca.csr  ca-csr.json  ca-key.pem  ca.pem
+```
+## Generate kubelets certs
+```
+for i in `seq 1 3` ; do
+    bash vmcerts.sh worker $i
+done
+```
+TODO: link to vmcerts.sh
+
+Final files created:
+```
+$ ls
+admin.csr       admin.pem       ca-csr.json  vmcert.sh          worker-1-key.pem  worker-2-csr.json  worker-3.csr       worker-3.pem
+admin-csr.json  ca-config.json  ca-key.pem   worker-1.csr       worker-1.pem      worker-2-key.pem   worker-3-csr.json
+admin-key.pem   ca.csr          ca.pem       worker-1-csr.json  worker-2.csr      worker-2.pem       worker-3-key.pem
+```
+
+Use openssl to check if the final .pem for the workers are correct (specially the IPs):
+```
+openssl x509 -in worker-1.pem -text
+```
+
 ## Generating API Server certificates
 TODO
